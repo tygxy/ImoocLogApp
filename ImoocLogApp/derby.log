@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Jan 12 13:10:08 CST 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0160-e8c6-7358-0000143e0090 
+on database directory /Users/guoxingyu/Documents/work/spark/sql/ImoocLogApp/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@3b0f7d9d 
+Loaded from file:/Users/guoxingyu/.m2/repository/org/apache/derby/derby/10.10.2.0/derby-10.10.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-b14
+user.dir=/Users/guoxingyu/Documents/work/spark/sql/ImoocLogApp
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.12.3
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
