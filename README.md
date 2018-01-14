@@ -32,4 +32,64 @@ spark-submit \
 20161110
 ```
 
+## 项目总结
+### 2.1 pom小结
+- 依赖一些必要的模块，包括sparkSQL,hive,mysql
+```
+<properties>
+    <scala.version>2.11.8</scala.version>
+    <spark.version>2.1.2</spark.version>
+</properties>
+<dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_2.11</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive_2.11</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.17</version>
+        </dependency>
+    </dependencies>
+```
+- 提交到yarn上时，加入<scope>provided</scope>，在本地开发时，要注释掉
+- 提交到yarn上时，要加入以下
+```
+  <plugin>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <configuration>
+          <archive>
+              <manifest>
+                  <mainClass></mainClass>
+              </manifest>
+          </archive>
+          <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+      </configuration>
+  </plugin>
+```
 
