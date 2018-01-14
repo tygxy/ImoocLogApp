@@ -73,7 +73,7 @@ spark-submit \
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.17</version>
         </dependency>
-    </dependencies>
+</dependencies>
 ```
 - 提交到yarn上时，加入<scope>provided</scope>，在本地开发时，要注释掉
 - 提交到yarn上时，要加入以下
@@ -91,5 +91,52 @@ spark-submit \
           </descriptorRefs>
       </configuration>
   </plugin>
+```
+
+### 2.2 SparkSQL功能小结
+- 基础配置
+```
+val spark = SparkSession.builder()
+    .config("spark.sql.sources.partitionColumnTypeInference.enabled","false")
+    .enableHiveSupport()
+    .getOrCreate()
+```
+- DF读写数据源
+```
+val DF1 = spark.read.format("parquet").load("hdfs://localhost:8020/xx/xx")
+    DF2.write.format("text").mode(SaveMode.Overwrite).save("file:///xx/xx)
+```
+- RDD转变成DF，使用编程方式显示创建Schema，并与RDD相关联
+```
+// 步骤
+// Create an RDD of Rows from the original RDD; 
+// Create the schema represented by a StructType matching the structure of Rows in the RDD created in Step 1.
+// Apply the schema to the RDD of Rows via createDataFrame method provided by SparkSession.
+
+// 读取RDD并转换成RowRDD
+val peopleRDD = spark.sparkContext.textFile("examples/src/main/resources/people.txt")
+val rowRDD = peopleRDD
+  .map(_.split(","))
+  .map(attributes => Row(attributes(0), attributes(1).trim))
+  
+// StructType形式创建Schema
+val schemaString = "name age"
+val fields = schemaString.split(" ")
+  .map(fieldName => StructField(fieldName, StringType, nullable = true))
+val schema = StructType(fields)
+
+// 关联rowRDD和schema
+val peopleDF = spark.createDataFrame(rowRDD, schema)
+```
+- DF操作
+  - DataFrame API
+  - 创建临时表，使用SQL
+  ```
+  peopleDF.createOrReplaceTempView("people")
+  val results = spark.sql("SELECT name FROM people")
+  ```
+- DF保存数据到MySQL
+```
+
 ```
 
