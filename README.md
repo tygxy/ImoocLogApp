@@ -2,8 +2,8 @@
 
 ## 1.使用说明
   项目已经mvn打包，主要包含两个可以跑在Yarn上的功能。
-### 1.1 数据清洗
-- spart-submit
+  
+- 数据清洗的spart-submit
 ```
 spark-submit \
 --class com.imooc.spark.SparkStatCleanJobYarn \
@@ -19,8 +19,7 @@ hdfs://localhost/imoock/clean/
 // 需要加载Files文件，用于IP地址解析
 ```
 
-## 1.2 统计数据存入Hive，MySQL
-- spart-submit
+- 统计数据存入Hive，MySQL的spart-submit
 ```
 spark-submit \
 --class com.imooc.spark.TopNStatJobYarn \
@@ -136,7 +135,7 @@ val peopleDF = spark.createDataFrame(rowRDD, schema)
   val results = spark.sql("SELECT name FROM people")
   ```
 - DF保存数据到MySQL
-  - 参考TopNStatJobYarn类中的videoAccessTopNStat函数
+    - 参考TopNStatJobYarn类中的videoAccessTopNStat函数
   
 - DF保存数据到Hive
-  - 参考TopNStatJobYarn类中的videoAccessTopNStat_Hive函数
+    - 参考TopNStatJobYarn类中的videoAccessTopNStat_Hive函数
