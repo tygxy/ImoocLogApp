@@ -31,7 +31,7 @@ spark-submit \
 20161110
 ```
 
-## 项目总结
+## 2.项目总结
 ### 2.1 pom小结
 - 依赖一些必要的模块，包括sparkSQL,hive,mysql
 ```
