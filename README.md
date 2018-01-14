@@ -128,8 +128,8 @@ val schema = StructType(fields)
 val peopleDF = spark.createDataFrame(rowRDD, schema)
 ```
 - DF操作
-  - DataFrame API
-  - 创建临时表，使用SQL
+     - DataFrame API
+     - 创建临时表，使用SQL
   ```
   peopleDF.createOrReplaceTempView("people")
   val results = spark.sql("SELECT name FROM people")
