@@ -135,8 +135,4 @@ val peopleDF = spark.createDataFrame(rowRDD, schema)
   peopleDF.createOrReplaceTempView("people")
   val results = spark.sql("SELECT name FROM people")
   ```
-- DF保存数据到MySQL
-```
-
-```
-
+- DF保存数据到MySQL,参考TopNStatJobYarn类中的videoAccessTopNStat函数，使
